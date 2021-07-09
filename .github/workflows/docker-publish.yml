@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: detect chrome version
-        run: 'CHROME_VERSION='$(curl -o- https://registry.hub.docker.com/v1/repositories/selenium/node-chrome/tags | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n' | awk -F ':' '{print $3}' | awk 'length($0) < 14' | sed '$!d') >> $GITHUB_ENV
+        run: echo 'CHROME_VERSION='$(curl -o- https://registry.hub.docker.com/v1/repositories/selenium/node-chrome/tags | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n' | awk -F ':' '{print $3}' | awk 'length($0) < 14' | sed '$!d') >> $GITHUB_ENV
 
       - name: test chrome detection
         run: echo ${{ env.CHROME_VERSION }}
