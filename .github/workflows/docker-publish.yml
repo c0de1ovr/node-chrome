@@ -50,6 +50,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: false
+          push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.CHROME_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
