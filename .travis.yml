@@ -6,7 +6,7 @@ services:
 script:
   - export IMAGE_NAME=romischart/node-chrome
   - docker build -t $IMAGE_NAME .
-  - export CHROME_VERSION=$(docker run --entrypoint "google-chrome" $IMAGE_NAME -version | awk '{ print $3 }')
+  - export CHROME_VERSION=$(curl -o- https://registry.hub.docker.com/v1/repositories/selenium/node-chrome/tags | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n' | awk -F ':' '{print $3}' | awk 'length($0) < 14' | sed '$!d')
 after_success:
   - docker login -u=$DOCKER_USER -p=$DOCKER_PASS
   - docker tag $IMAGE_NAME $IMAGE_NAME:$CHROME_VERSION
