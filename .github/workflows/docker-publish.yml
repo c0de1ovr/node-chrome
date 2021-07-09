@@ -31,9 +31,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: detect chrome version
-        run: |
-        export CHROME_VERSION=$(curl -o- https://registry.hub.docker.com/v1/repositories/selenium/node-chrome/tags | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n' | awk -F ':' '{print $3}' | awk 'length($0) < 14' | sed '$!d')
-        echo $CHROME_VERSION
+        run: export CHROME_VERSION=$(curl -o- https://registry.hub.docker.com/v1/repositories/selenium/node-chrome/tags | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n' | awk -F ':' '{print $3}' | awk 'length($0) < 14' | sed '$!d')
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
