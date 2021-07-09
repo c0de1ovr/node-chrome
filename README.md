@@ -1,7 +1,5 @@
 # Node docker image with latest stable chrome
 
-[![Build Status](https://travis-ci.com/Romischart/node-chrome.svg?branch=master)](https://travis-ci.com/Romischart/node-chrome)
-
 > Fully dockerized latest stable chrome based on [selenium/node-chrome](https://hub.docker.com/r/selenium/node-chrome) with nodejs & yarn preinstalled
 
 ## Why
