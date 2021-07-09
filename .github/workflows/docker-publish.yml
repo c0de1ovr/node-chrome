@@ -34,22 +34,15 @@ jobs:
 
       - name: test chrome detection
         run: echo ${{ env.CHROME_VERSION }}
+
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
-      #- name: Log into registry ${{ env.REGISTRY }}
-      #  uses: docker/login-action@v1
-      #  with:
-      #    registry: ${{ env.REGISTRY }}
-      #    username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #    password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # Extract metadata (tags, labels) for Docker
-      # https://github.com/docker/metadata-action
-      #- name: Extract Docker metadata
-      #  id: meta
-      #  uses: docker/metadata-action@v3
-      #  with:
-      #    images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      - name: Log into registry ${{ env.REGISTRY }}
+       uses: docker/login-action@v1
+       with:
+         registry: ${{ env.REGISTRY }}
+         username: ${{ secrets.DOCKERHUB_USERNAME }}
+         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
